@@ -1,0 +1,8 @@
+.segment-btn {
+  width: 50%;
+  @apply transition duration-500 translate-x-full py-2 text-center cursor-pointer rounded text-gray-800;
+}
+
+.segment-btn:focus {
+  outline: none;
+}
