@@ -35,7 +35,7 @@ const LaunchScreen: React.FC = () => {
 
         Authenticate(response.code).then(res => {
           setUserId(res.data.id)
-          setTimeout(() => setOpenScoreModal(true), 700)
+          setTimeout(() => setOpenScoreModal(true), 600)
           connectMono.close()
         }).catch(err => {
           setSubmitError(`${err.message}`)
