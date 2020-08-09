@@ -1,7 +1,7 @@
 import React from 'react'
 import { GetCredits } from '../utils/mono-challenge-api'
 import TransactionLoader from './TransactionLoader'
-import { sortDate } from '../utils/lib'
+import { sortDate, ConvertCurrency } from '../utils/lib'
 
 const CreditList: React.FC<{id: string}> = (props) => {
   const [data, setData] = React.useState<any>({credits: [], loading: true})
@@ -41,7 +41,7 @@ const CreditList: React.FC<{id: string}> = (props) => {
 
                 <div className="text-right">
                   <span className="text-base text-gray-900 font-medium block">
-                    {(c.amount).toLocaleString("en-NG", {style: 'currency', currency: 'NGN'})}
+                    {ConvertCurrency(c.amount).toLocaleString("en-NG", {style: 'currency', currency: 'NGN'})}
                   </span>
                 </div>
               </div>

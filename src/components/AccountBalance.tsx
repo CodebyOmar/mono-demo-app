@@ -1,5 +1,6 @@
 import React from 'react'
 import { GetBalance } from '../utils/mono-challenge-api'
+import {ConvertCurrency} from '../utils/lib'
 
 const AccountBalance: React.FC<{id: string}> = (props) => {
   const [data, setData] = React.useState<any>(() => ({ balance: 0, loading: true }))
@@ -29,7 +30,7 @@ const AccountBalance: React.FC<{id: string}> = (props) => {
 
       {!data.loading ? (
         <span className="font-bold text-3xl block">
-          {(data.balance).toLocaleString("en-NG", {style: 'currency', currency: "NGN"})}
+          {ConvertCurrency(data.balance).toLocaleString("en-NG", {style: 'currency', currency: "NGN"})}
         </span>
       ) : null}
 

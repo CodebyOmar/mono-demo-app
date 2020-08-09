@@ -125,7 +125,7 @@ const LaunchScreen: React.FC = () => {
           </form>
         </div>
 
-        <div className="md:col-span-1 flex justify-end col-span-0 hidden sm:block">
+        <div className="md:col-span-1 col-span-0 hidden sm:block">
           <img src={Illustration} alt="illustration" />
         </div>
       </div>
