@@ -7,6 +7,7 @@ const AccountBalance: React.FC<{id: string}> = (props) => {
   const [error, setError] = React.useState<any>(null)
   const fetchBalance = React.useCallback(() => {
     setError(null)
+    setData((d: any) => ({...d, loading: true}))
     GetBalance(props.id)
       .then(response => setData({...response.data, loading: false}))
       .catch(err => {
@@ -34,7 +35,7 @@ const AccountBalance: React.FC<{id: string}> = (props) => {
         </span>
       ) : null}
 
-      {data.loading && <div className="h-12 mt-2 bg-ble-400 rounded animate-pulse w-3/4"></div>}
+      {data.loading && <div className="h-12 mt-2 bg-blue-400 rounded animate-pulse w-3/4"></div>}
     </div>
   )
 }
