@@ -6,6 +6,7 @@ import { useFormik } from 'formik'
 import { Authenticate } from '../utils/mono-challenge-api';
 import * as Yup from 'yup'
 import InputErrorMessage from '../components/InputErrorMessage';
+import NumberFormat from 'react-number-format'
 
 declare const Connect: any;
 
@@ -105,7 +106,15 @@ const LaunchScreen: React.FC = () => {
                     &#8358;
                   </span>
                 </div>
-                <input {...formik.getFieldProps("amount")} id="amount" className="form-input py-3 block w-full pl-7 pr-12 sm:text-sm sm:leading-5" placeholder="0.00" aria-describedby="amount-currency"/>
+                <NumberFormat 
+                  thousandSeparator={true} 
+                  id="amount" 
+                  className="form-input py-3 block w-full pl-7 pr-12 sm:text-sm sm:leading-5" 
+                  placeholder="0.00" 
+                  aria-describedby="amount-currency" 
+                  inputMode="numeric"
+                  type="text"
+                  {...formik.getFieldProps("amount")} />
                 <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                   <span className="text-gray-500 sm:text-sm sm:leading-5" id="amount-currency">
                     NGN
@@ -134,7 +143,11 @@ const LaunchScreen: React.FC = () => {
         <CreditScoreModal
           open={openScoreModal} 
           close={() => setOpenScoreModal(false)}
-          userInfo={{...formik.values, id: userId}} />
+          userInfo={{
+            ...formik.values, 
+            amount: formik.values.amount.replace(/,/g, ''), 
+            id: userId
+          }} />
       ) : null}
 
       <Script
@@ -149,7 +162,7 @@ const LaunchScreen: React.FC = () => {
 const validationSchema = Yup.object({
   email: Yup.string().email('Please provide a valid email').required('Email is required'),
   name: Yup.string().required('Name is required'),
-  amount: Yup.number().required('Please input amount you want to access')
+  amount: Yup.string().required('Please input amount you want to access')
 })
 
 export default LaunchScreen
